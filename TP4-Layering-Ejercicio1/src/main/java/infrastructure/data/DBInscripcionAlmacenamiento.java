@@ -14,14 +14,13 @@ public class DBInscripcionAlmacenamiento implements InscripcionAlmacenamiento {
 
 	public DBInscripcionAlmacenamiento(Properties propiedades) throws SQLException {
 
-		this.conn = DriverManager.getConnection(propiedades.getProperty("url"), propiedades.getProperty("user"),
-				propiedades.getProperty("password"));
+		this.conn = DriverManager.getConnection(propiedades.getProperty("url"));
 	}
 
 	@Override
 	public void inscribir(String nombre, String telefono, String region) {
 
-		String insert = "insert into participantes(nombre, telefono, region)	values(?,?,?)";
+		String insert = "insert into participante(nombre, telefono, region)	values(?,?,?)";
 		try (PreparedStatement st = conn.prepareStatement(insert);) {
 
 			st.setString(1, nombre);

@@ -8,13 +8,9 @@ public abstract class ConnectionManager {
 
 		Properties prop = new Properties();
 
-		String url = "jdbc:derby://localhost:1527/participantes";
-		String user = "app";
-		String password = "app";
+		String url = "jdbc:sqlite:./src/main/resources/db_participante";
 
 		prop.put("url", url);
-		prop.put("user", user);
-		prop.put("password", password);
 
 		return prop;
 	}
