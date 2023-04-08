@@ -22,9 +22,12 @@ class TestUnitario {
 	@Test
 	void agregarParticipante() {
 
-		this.participante = new Participante("Charles", "2920457841", "US", almacenamiento);
-
-		this.participante.inscribir();
+		try {
+			this.participante = new Participante("Charles", "2920457841", "US", almacenamiento);
+			this.participante.inscribir();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		String textoEsperado = "Charles, 2920457841, US";
 

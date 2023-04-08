@@ -3,8 +3,10 @@ package domain.model;
 import java.util.Optional;
 import java.util.Set;
 
+import domain.portsin.DomainException;
 import domain.portsin.PlanillaParticipante;
 import domain.portsout.InscripcionAlmacenamiento;
+import infrastructure.data.InfrastructureDataException;
 
 public class Participante implements PlanillaParticipante {
 
@@ -14,15 +16,16 @@ public class Participante implements PlanillaParticipante {
 	private String region;
 	private InscripcionAlmacenamiento almacenamiento;
 
-	public Participante(String nombre, String telefono, String region, InscripcionAlmacenamiento almacenamiento) {
+	public Participante(String nombre, String telefono, String region, InscripcionAlmacenamiento almacenamiento)
+			throws DomainException {
 
 		this.regionesDisponibles = Set.of("China", "US", "Europa");
 
 		this.almacenamiento = almacenamiento;
 
-		this.nombre = Optional.of(nombre).orElseThrow(RuntimeException::new);
-		this.telefono = Optional.of(telefono).orElseThrow(RuntimeException::new);
-		this.region = Optional.of(region).orElseThrow(RuntimeException::new);
+		this.nombre = Optional.of(nombre).orElseThrow();
+		this.telefono = Optional.of(telefono).orElseThrow();
+		this.region = Optional.of(region).orElseThrow();
 
 		this.validarNombre();
 		this.validarTelefono();
@@ -30,24 +33,24 @@ public class Participante implements PlanillaParticipante {
 
 	}
 
-	private void validarNombre() {
+	private void validarNombre() throws DomainException {
 		if (this.nombre.isBlank())
-			throw new RuntimeException("Nombre Invalido");
+			throw new DomainException("Nombre Invalido");
 	}
 
-	private void validarRegion() {
+	private void validarRegion() throws DomainException {
 		if (!this.regionesDisponibles.contains(this.region))
-			throw new RuntimeException("Region no existente");
+			throw new DomainException("Region no existente");
 	}
 
-	private void validarTelefono() {
+	private void validarTelefono() throws DomainException {
 		String regex = "\\d{4}-\\d{6}";
-		if (this.telefono.matches(regex) || this.telefono.isBlank())
-			throw new RuntimeException("Numero Invalido");
+		if (!this.telefono.matches(regex) || this.telefono.isBlank())
+			throw new DomainException("Numero Invalido");
 	}
 
 	@Override
-	public void inscribir() {
+	public void inscribir() throws InfrastructureDataException {
 
 		this.almacenamiento.inscribir(nombre, telefono, region);
 

@@ -18,7 +18,7 @@ public class DBInscripcionAlmacenamiento implements InscripcionAlmacenamiento {
 	}
 
 	@Override
-	public void inscribir(String nombre, String telefono, String region) {
+	public void inscribir(String nombre, String telefono, String region) throws InfrastructureDataException {
 
 		String insert = "insert into participante(nombre, telefono, region)	values(?,?,?)";
 		try (PreparedStatement st = conn.prepareStatement(insert);) {
@@ -29,8 +29,7 @@ public class DBInscripcionAlmacenamiento implements InscripcionAlmacenamiento {
 			st.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InfrastructureDataException(e.getMessage() + " || No se pudo insribir Participante");
 		}
 
 	}
