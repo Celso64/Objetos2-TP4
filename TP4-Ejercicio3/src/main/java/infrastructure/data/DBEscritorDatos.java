@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import domain.model.Concurso;
 import domain.model.Participante;
@@ -15,7 +16,7 @@ public class DBEscritorDatos implements EscritorDatos {
 	private Connection conexion;
 
 	public DBEscritorDatos(Connection conexion) {
-		this.conexion = conexion;
+		this.conexion = Objects.requireNonNull(conexion);
 	}
 
 	@Override

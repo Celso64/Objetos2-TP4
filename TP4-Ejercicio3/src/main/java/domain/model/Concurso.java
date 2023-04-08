@@ -1,6 +1,7 @@
 package domain.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Concurso {
 	private Long id;
@@ -9,10 +10,10 @@ public class Concurso {
 	private LocalDate fechaFinInscripcion;
 
 	public Concurso(Long id, String nombre, LocalDate fechaInicioInscripcion, LocalDate fechaFinInscripcion) {
-		this.id = id;
-		this.nombre = nombre;
-		this.fechaInicioInscripcion = fechaInicioInscripcion;
-		this.fechaFinInscripcion = fechaFinInscripcion;
+		this.id = Objects.requireNonNull(id);
+		this.nombre = Objects.requireNonNull(nombre);
+		this.fechaInicioInscripcion = Objects.requireNonNull(fechaInicioInscripcion);
+		this.fechaFinInscripcion = Objects.requireNonNull(fechaFinInscripcion);
 	}
 
 	public Long getId() {

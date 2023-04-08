@@ -8,7 +8,6 @@ public class Participante {
 
 	private String nombre;
 	private String apellido;
-	private String dni;
 	private String telefono;
 	private String email;
 	private Long idConcurso;
@@ -19,7 +18,6 @@ public class Participante {
 			Objects.requireNonNull(idConcurso, "Concurso Invalido");
 			Objects.requireNonNull(nombre, "Nombre Nulo");
 			Objects.requireNonNull(apellido, "Apellido Nulo");
-			// Objects.requireNonNull(dni, "DNI Nulo");
 			Objects.requireNonNull(telefono, "Telefono Nulo");
 			Objects.requireNonNull(email, "Email Nulo");
 		} catch (Exception e) {
@@ -28,7 +26,6 @@ public class Participante {
 
 		verificarStringVacio(nombre, "Nombre");
 		verificarStringVacio(apellido, "Apellido");
-		// verificarStringVacio(dni, "DNI");
 		verificarStringVacio(telefono, "Telefono");
 		verificarStringVacio(email, "Email");
 
@@ -37,7 +34,6 @@ public class Participante {
 
 		this.nombre = nombre;
 		this.apellido = apellido;
-		// this.dni = dni;
 		this.telefono = telefono;
 		this.email = email;
 		this.idConcurso = idConcurso;
@@ -49,10 +45,6 @@ public class Participante {
 
 	public String getApellido() {
 		return apellido;
-	}
-
-	public String getDni() {
-		return dni;
 	}
 
 	public String getTelefono() {

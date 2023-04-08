@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import domain.model.Concurso;
 import domain.model.Participante;
@@ -18,7 +19,7 @@ public class DBLectorDatos implements LectorDatos {
 	private Connection conexion;
 
 	public DBLectorDatos(Connection conexion) {
-		this.conexion = conexion;
+		this.conexion = Objects.requireNonNull(conexion);
 	}
 
 	@Override

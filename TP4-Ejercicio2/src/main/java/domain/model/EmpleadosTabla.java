@@ -20,7 +20,7 @@ public class EmpleadosTabla implements Tabla {
 
 	public EmpleadosTabla(LeerTabla lectorDeTabla, Notificador notificador) {
 		this(lectorDeTabla.getTabla());
-		this.notificador = notificador;
+		this.notificador = Objects.requireNonNull(notificador);
 	}
 
 	private EmpleadosTabla(List<String[]> datos) {

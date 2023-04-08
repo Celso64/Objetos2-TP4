@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import domain.model.Concurso;
 import domain.model.Participante;
@@ -20,8 +21,8 @@ public class TXTLectorDatos implements LectorDatos {
 	private InputStream lectorConcursos;
 
 	public TXTLectorDatos(InputStream lectorParticipantes, InputStream lectorConcursos) {
-		this.lectorParticipantes = lectorParticipantes;
-		this.lectorConcursos = lectorConcursos;
+		this.lectorParticipantes = Objects.requireNonNull(lectorParticipantes);
+		this.lectorConcursos = Objects.requireNonNull(lectorConcursos);
 	}
 
 	@Override

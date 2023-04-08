@@ -2,6 +2,7 @@ package infrastructure.data;
 
 import java.io.OutputStream;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import domain.model.Participante;
 import domain.portsout.EscritorDatos;
@@ -12,8 +13,8 @@ public class TXTEscritorDatos implements EscritorDatos {
 	private OutputStream escritorConcursos;
 
 	public TXTEscritorDatos(OutputStream escritorParticipantes, OutputStream escritorConcursos) {
-		this.escritorParticipantes = escritorParticipantes;
-		this.escritorConcursos = escritorConcursos;
+		this.escritorParticipantes = Objects.requireNonNull(escritorParticipantes);
+		this.escritorConcursos = Objects.requireNonNull(escritorConcursos);
 	}
 
 	@Override

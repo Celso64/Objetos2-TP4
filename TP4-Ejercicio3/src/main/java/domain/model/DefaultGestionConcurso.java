@@ -1,6 +1,7 @@
 package domain.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import domain.portsin.DomainException;
 import domain.portsin.GestionConcurso;
@@ -14,8 +15,8 @@ public class DefaultGestionConcurso implements GestionConcurso {
 	private EscritorDatos escritor;
 
 	public DefaultGestionConcurso(LectorDatos lector, EscritorDatos escritor) {
-		this.lector = lector;
-		this.escritor = escritor;
+		this.lector = Objects.requireNonNull(lector);
+		this.escritor = Objects.requireNonNull(escritor);
 	}
 
 	@Override
