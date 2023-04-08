@@ -8,14 +8,14 @@ import infrastructure.data.DBEscritorDatos;
 import infrastructure.data.DBLectorDatos;
 import infrastrucuture.ui.RadioCompetition;
 
-public class App {
+public class DBApp {
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					new App().start();
+					new DBApp().start();
 				} catch (Exception e) {
 					// log exception...
 					System.out.println(e);
