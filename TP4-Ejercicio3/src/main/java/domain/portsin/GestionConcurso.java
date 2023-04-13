@@ -8,7 +8,6 @@ public interface GestionConcurso {
 
 	List<Concurso> todosLosConcursos() throws DomainException;
 
-	void saveInscription(String nombre, String apellido, String telefono, String email, Long idConcurso)
-			throws DomainException;
+	void saveInscription(ParticipanteDTO participanteDTO) throws DomainException;
 
 }

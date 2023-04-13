@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import domain.portsin.DomainException;
 import domain.portsin.GestionConcurso;
+import domain.portsin.ParticipanteDTO;
 import domain.portsout.EscritorDatos;
 import domain.portsout.LectorDatos;
 import infrastructure.data.InfrastructureDataException;
@@ -23,7 +24,8 @@ public class DefaultGestionConcurso implements GestionConcurso {
 	public List<Concurso> todosLosConcursos() throws DomainException {
 
 		try {
-
+			// Aclaracion: Filtro aca y no con SQL porque el motor SQLite no soporta tipo
+			// Date
 			return lector.getConcursos().stream().filter(Concurso::estaVigente).toList();
 
 		} catch (InfrastructureDataException e) {
@@ -32,11 +34,15 @@ public class DefaultGestionConcurso implements GestionConcurso {
 	}
 
 	@Override
-	public void saveInscription(String nombre, String apellido, String telefono, String email, Long idConcurso)
-			throws DomainException {
+	public void saveInscription(ParticipanteDTO participanteDTO) throws DomainException {
 
 		try {
-			escritor.salvarParticipante(nombre, apellido, telefono, email, idConcurso);
+
+			Participante p = new Participante(participanteDTO.nombre(), participanteDTO.apellido(),
+					participanteDTO.telefono(), participanteDTO.email(), participanteDTO.idConcurso());
+
+			escritor.salvarParticipante(p.getNombre(), p.getApellido(), p.getTelefono(), p.getEmail(),
+					p.getIdConcurso());
 		} catch (InfrastructureDataException e) {
 			throw new DomainException(e.getMessage());
 		}

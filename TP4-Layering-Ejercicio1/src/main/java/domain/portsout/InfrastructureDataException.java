@@ -1,4 +1,4 @@
-package infrastructure.data;
+package domain.portsout;
 
 public class InfrastructureDataException extends Exception {
 

@@ -12,19 +12,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import domain.model.Participante;
-import domain.portsout.InscripcionAlmacenamiento;
+import domain.portsin.ParticipanteDTO;
+import domain.portsin.PlanillaParticipante;
 
 public class AgregarParticipante extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private InscripcionAlmacenamiento almacenamiento;
+	private PlanillaParticipante planilla;
 	private JTextField nombre;
 	private JTextField telefono;
 	private JTextField region;
 
-	public AgregarParticipante(InscripcionAlmacenamiento almacenamiento) throws SQLException {
-		this.almacenamiento = almacenamiento;
+	public AgregarParticipante(PlanillaParticipante planilla) throws SQLException {
+		this.planilla = planilla;
 		setupUIComponents();
 	}
 
@@ -59,9 +59,7 @@ public class AgregarParticipante extends JFrame {
 	private void onBotonCargar() {
 
 		try {
-			Participante participante = new Participante(nombre.getText(), telefono.getText(), region.getText(),
-					this.almacenamiento);
-			participante.inscribir();
+			this.planilla.inscribir(new ParticipanteDTO(nombre.getText(), telefono.getText(), region.getText()));
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}

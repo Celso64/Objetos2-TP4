@@ -1,9 +1,9 @@
 package domain.portsin;
 
-import infrastructure.data.InfrastructureDataException;
+import domain.portsout.InfrastructureDataException;
 
 public interface PlanillaParticipante {
 
-	void inscribir() throws InfrastructureDataException;
+	void inscribir(ParticipanteDTO participante) throws InfrastructureDataException, DomainException;
 
 }

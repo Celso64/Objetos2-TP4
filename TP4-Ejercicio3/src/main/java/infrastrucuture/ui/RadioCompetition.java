@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import domain.model.Concurso;
 import domain.portsin.DomainException;
 import domain.portsin.GestionConcurso;
+import domain.portsin.ParticipanteDTO;
 
 public class RadioCompetition {
 	private JPanel contentPane;
@@ -86,8 +87,10 @@ public class RadioCompetition {
 		try {
 			Long idConcurso = comboBoxOptions.get(comboBox.getSelectedItem());
 
-			gestor.saveInscription(txtName.getText(), txtLastName.getText(), txtPhone.getText(), txtEmail.getText(),
-					idConcurso);
+			ParticipanteDTO nuevo = new ParticipanteDTO(txtName.getText(), txtLastName.getText(), txtPhone.getText(),
+					txtEmail.getText(), idConcurso);
+
+			gestor.saveInscription(nuevo);
 
 			JOptionPane.showMessageDialog(null, txtName.getText() + " se pudo inscribir");
 			resetCampos();

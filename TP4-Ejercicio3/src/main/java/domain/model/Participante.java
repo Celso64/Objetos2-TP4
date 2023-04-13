@@ -16,26 +16,15 @@ public class Participante {
 			throws DomainException {
 		try {
 			Objects.requireNonNull(idConcurso, "Concurso Invalido");
-			Objects.requireNonNull(nombre, "Nombre Nulo");
-			Objects.requireNonNull(apellido, "Apellido Nulo");
-			Objects.requireNonNull(telefono, "Telefono Nulo");
-			Objects.requireNonNull(email, "Email Nulo");
+
 		} catch (Exception e) {
 			throw new DomainException(e.getMessage());
 		}
 
-		verificarStringVacio(nombre, "Nombre");
-		verificarStringVacio(apellido, "Apellido");
-		verificarStringVacio(telefono, "Telefono");
-		verificarStringVacio(email, "Email");
-
-		checkEmail(email);
-		checkPhone(telefono);
-
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.telefono = telefono;
-		this.email = email;
+		this.nombre = new Nombre(nombre).toString();
+		this.apellido = new Apellido(apellido).toString();
+		this.telefono = new Telefono(telefono).toString();
+		this.email = new Email(email).toString();
 		this.idConcurso = idConcurso;
 	}
 
@@ -57,24 +46,6 @@ public class Participante {
 
 	public Long getIdConcurso() {
 		return idConcurso;
-	}
-
-	private void verificarStringVacio(String string, String nombreCampo) throws DomainException {
-		if (string.isBlank())
-			throw new DomainException(nombreCampo + " no debe estar vacio");
-	}
-
-	private void checkEmail(String email) throws DomainException {
-		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-
-		if (!email.matches(regex))
-			throw new DomainException("Email Invalido");
-	}
-
-	private void checkPhone(String telefono) throws DomainException {
-		String regex = "\\d{4}-\\d{6}";
-		if (!telefono.matches(regex))
-			throw new DomainException("Telefono Invalido");
 	}
 
 }

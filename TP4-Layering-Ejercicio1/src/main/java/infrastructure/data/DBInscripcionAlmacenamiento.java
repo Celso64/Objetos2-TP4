@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import domain.portsout.InfrastructureDataException;
 import domain.portsout.InscripcionAlmacenamiento;
 
 public class DBInscripcionAlmacenamiento implements InscripcionAlmacenamiento {
